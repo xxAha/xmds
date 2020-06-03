@@ -13,7 +13,7 @@ router.get('/', function(req, res) {
 })
 
 // 通过 userRouter 来处理 /user 路由，对路由处理进行解耦
-router.use('/user', userRouter)
+router.use('/api/user', userRouter)
 
 /**
  * 集中处理404请求的中间件
