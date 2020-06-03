@@ -27,11 +27,7 @@ import Layout from '@/layout'
   }
  */
 
-/**
- * constantRoutes
- * a base page that does not have permission requirements
- * all roles can be accessed
- */
+// 所以用户都拥有的路由
 export const constantRoutes = [
   {
     path: '/redirect',
@@ -79,11 +75,23 @@ export const constantRoutes = [
   }
 ]
 
-/**
- * asyncRoutes
- * the routes that need to be dynamically loaded based on user roles
- */
+// 配置权限路由(异步路由)
 export const asyncRoutes = [
+  {
+    path: '/book',
+    component: Layout,
+    redirect: '/book/create',
+    // icon 是库自带的
+    // roles: ['admin'] 只要 admin 用户使用和 sidebar 能看到的路由
+    meta: { title: '图书管理', icon: 'documentation', roles: ['admin'] },
+    children: [
+      {
+        path: 'create',
+        component: () => import('@/views/book/create'),
+        meta: { title: '上传图书', icon: 'edit', roles: ['admin'] }
+      }
+    ]
+  },
   {
     path: '/error',
     component: Layout,
