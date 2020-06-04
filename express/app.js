@@ -1,6 +1,7 @@
 const express = require('express')
 const router = require('./router')
 const bodyParser = require('body-parser')
+const path = require('path')
 
 
 // 创建 express 应用
@@ -8,6 +9,8 @@ const app = express()
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 app.use(router)
 

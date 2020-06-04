@@ -83,12 +83,26 @@ export const asyncRoutes = [
     redirect: '/book/create',
     // icon 是库自带的
     // roles: ['admin'] 只要 admin 用户使用和 sidebar 能看到的路由
-    meta: { title: '图书管理', icon: 'documentation', roles: ['admin'] },
+    meta: { title: '图书管理', icon: 'documentation' },
     children: [
       {
         path: 'create',
+        name: 'bookCreate',
         component: () => import('@/views/book/create'),
         meta: { title: '上传图书', icon: 'edit', roles: ['admin'] }
+      },
+      {
+        path: 'edit',
+        name: 'bookEdit',
+        component: () => import('@/views/book/edit'),
+        hidden: true,
+        meta: { title: '上传图书', icon: 'edit', roles: ['admin'], activeMenu: '/book/list' }
+      },
+      {
+        path: 'list',
+        name: 'bookList',
+        component: () => import('@/views/book/list'),
+        meta: { title: '图书列表', icon: 'list', roles: ['editor'] }
       }
     ]
   },
